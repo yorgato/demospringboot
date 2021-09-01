@@ -73,5 +73,33 @@ public class SortController {
 				
 		return new ResponseEntity<Map<String, Object>>(response,HttpStatus.OK);
 	}
+	
+	/**
+	 * sort the list 
+	 * @return
+	 */
+	@GetMapping("/sort/runsort")
+	public ResponseEntity<?> runSort() {	
+		Random rn = new Random();
+		//List that have the number of values to generate and values of random
+		List<Integer> al = rn.ints(50, 0, 1000).boxed().collect(Collectors.toList());
+		//sort the list
+		Collections.sort(al);		
+		return new ResponseEntity<List>(al,HttpStatus.OK);
+	}
+	
+	/**
+	 * sort the list in decreasing order
+	 * @return
+	 */
+	@GetMapping("/sort/runsortdesc")
+	public ResponseEntity<?> runSortDesc() {	
+		Random rn = new Random();
+		//List that have the number of values to generate and values of random
+		List<Integer> al = rn.ints(50, 0, 1000).boxed().collect(Collectors.toList());	
+		//sort the list in decreasing order
+		Collections.sort(al, Collections.reverseOrder());
+		return new ResponseEntity<List>(al,HttpStatus.OK);
+	}
 
 }
